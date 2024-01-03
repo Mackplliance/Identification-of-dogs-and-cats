@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>预测结果</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: #495057;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh; /* Change height to min-height for centering */
+    }
+
+    .container {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out; /* Add a fade-in animation */
+    }
+
+    h2 {
+      color: #007BFF;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.3em;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      color: #28A745;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    li {
+      font-size: 1.2em;
+      margin-bottom: 8px;
+    }
+
+    img {
+      max-width: 50%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      animation: zoomIn 1s ease-in-out; /* Add a zoom-in animation */
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>预测结果</h2>
+    <p>预测标签：<strong>{{ label }}</strong></p>
+    <div class="image-container">
+      {% if uploaded_image %}
+        <img src="data:image/jpg;base64,{{ uploaded_image }}" alt="上传的图像">
+      {% endif %}
+    </div>
+    <h3>类别概率：</h3>
+    <ul>
+      {% for prob in probabilities %}
+        <li>{{ loop.index }}: {{ prob }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
